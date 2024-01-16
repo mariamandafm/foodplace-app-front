@@ -25,7 +25,7 @@ export function Header() {
                   <a href="#menu">Menu</a>
                 </li>
                 <li>
-                  <a href="#contact">Contact</a>
+                  <a href="#footer">Contact</a>
                 </li>
               </ul>
             </nav>
