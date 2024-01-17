@@ -1,20 +1,19 @@
 import { useState } from "react";
 import "./App.css";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { Menu } from "./components/Menu";
-import { Footer } from "./components/Footer";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Home } from "./pages/Home"; 
+import { Login } from "./pages/Login";
 
 function App() {
   return (
-    <>
-     <Header />
-     <Hero />
-     <About />
-     <Menu />
-     <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

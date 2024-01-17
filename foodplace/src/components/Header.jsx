@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function Header() {
   return (
     <>
@@ -31,9 +33,8 @@ export function Header() {
             </nav>
           </div>
 
-          <a class="btn-book-a-table" href="#book-a-table">
-            Login
-          </a>
+          <Link to="/login" className="btn-book-a-table">Login</Link>
+
           <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
           <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         </div>
