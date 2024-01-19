@@ -1,13 +1,13 @@
 
 import { MenuItem } from "./MenuItem.jsx";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../services/api.js";
 
 export function Menu() {
     const [menuItems, setMenuItems] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/menu/food-item/").then((response) => {
+        api.get("menu/food-item/").then((response) => {
             setMenuItems(response.data);
         });
     }, [])

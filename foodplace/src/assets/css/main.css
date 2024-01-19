@@ -1653,3 +1653,25 @@ section {
 .footer .credits a {
   color: #fff;
 }
+
+/*--------------------------------------------------------------
+# Login
+--------------------------------------------------------------*/
+.login {
+  width: 70%;
+  margin: auto;
+  position: absolute;
+  min-height: 60vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 10px;
+}
+
+.login .logo h1 span {
+  color: var(--color-primary);
+}
+
+.login .logo {
+  align-items: center;
+}
