@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { api } from "../services/api";
+import { useAuth } from "../hooks/AuthProvider";
 
 export function Login() {
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+
+  const auth = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +20,12 @@ export function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
+    if (input.email && input.password) {
+      auth.loginAction(input);
+      console.log("Login")
+    } else {
+      alert("Please fill all the fields");
+    }
   };
 
   return (
