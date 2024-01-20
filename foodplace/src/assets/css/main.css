@@ -1655,7 +1655,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Login
+# Login & Sing Up
 --------------------------------------------------------------*/
 .login {
   width: 70%;
@@ -1674,4 +1674,9 @@ section {
 
 .login .logo {
   align-items: center;
+}
+
+.error {
+  color: var(--color-primary);
+  text-transform: capitalize;
 }

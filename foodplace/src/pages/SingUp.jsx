@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { api } from "../services/api";
 import { useAuth } from "../hooks/AuthProvider";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export function Login() {
+export function SingUp() {
   const [input, setInput] = useState({
     email: "",
     password: "",
+    name: "",
   });
 
+  const navigate = useNavigate();
   const auth = useAuth();
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,11 +23,22 @@ export function Login() {
       [name]: value,
     }));
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.email && input.password) {
-      auth.loginAction(input);
+    if (input.email && input.password && input.name) {
+      api
+        .post("user/create/", input, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          navigate("/login");
+        })
+        .catch((err) => {
+          setErrors(JSON.parse(err.request.response));
+        });
     } else {
       alert("Please fill all the fields");
     }
@@ -40,6 +56,21 @@ export function Login() {
           <form onSubmit={handleSubmit} className="php-email-form">
             <div className="form-floating mb-3">
               <input
+                id="floatingName"
+                className="form-control"
+                type="name"
+                name="name"
+                value={input.name}
+                onChange={handleChange}
+                placeholder="Name"
+              />
+              <label for="floatingName">Name</label>
+              <span className="error">
+                {errors.name && <p className="Title">{errors.name}</p>}
+              </span>
+            </div>
+            <div className="form-floating mb-3">
+              <input
                 id="floatingInput"
                 className="form-control"
                 type="email"
@@ -49,6 +80,9 @@ export function Login() {
                 placeholder="Enter email"
               />
               <label for="floatingInput">Email</label>
+              <span >
+                {errors.email && <p className="error">{errors.email}</p>}
+              </span>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -61,13 +95,15 @@ export function Login() {
                 placeholder="Password"
               />
               <label for="floatingPassword">Password</label>
+              <span className="error">
+                {errors.password && <p className="Title">{errors.password}</p>}
+              </span>
             </div>
             <div className="text-center d-flex">
               <button type="submit" className="flex-fill">
-                Login
+                Sing Up
               </button>
             </div>
-            <div className="text-center mt-1">Don't have an account? <Link to="/singup">Sing Up</Link></div>
           </form>
         </div>
       </div>
