@@ -10,9 +10,12 @@ import { SingUp } from "./pages/SingUp";
 import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./router/PrivateRoute";
 
+import { ToastContainer } from "react-toastify";
+
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -3,6 +3,8 @@ import { api } from "../services/api";
 import { useAuth } from "../hooks/AuthProvider";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function SingUp() {
   const [input, setInput] = useState({
@@ -35,12 +37,20 @@ export function SingUp() {
         })
         .then((response) => {
           navigate("/login");
+          toast.success("Account created successfully!", {
+            position: "top-center",
+            autoClose: 2000,
+          });
         })
         .catch((err) => {
           setErrors(JSON.parse(err.request.response));
         });
     } else {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields.",
+        {
+          position: 'top-center',
+          autoClose: 2000,
+        });
     }
   };
 
@@ -80,7 +90,7 @@ export function SingUp() {
                 placeholder="Enter email"
               />
               <label for="floatingInput">Email</label>
-              <span >
+              <span>
                 {errors.email && <p className="error">{errors.email}</p>}
               </span>
             </div>

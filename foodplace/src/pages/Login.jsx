@@ -2,6 +2,8 @@ import { useState } from "react";
 import { api } from "../services/api";
 import { useAuth } from "../hooks/AuthProvider";
 import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Login() {
   const [input, setInput] = useState({
@@ -23,8 +25,16 @@ export function Login() {
     e.preventDefault();
     if (input.email && input.password) {
       auth.loginAction(input);
+      toast.success("Login success!",
+        {
+          position: 'top-center',
+          autoClose: 2000,
+        });
     } else {
-      alert("Please fill all the fields");
+      toast.error("Please fill all the fields",
+        {
+          position: 'top-center',
+        });
     }
   };
 
