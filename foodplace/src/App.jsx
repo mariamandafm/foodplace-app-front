@@ -6,11 +6,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SingUp } from "./pages/SingUp";
+import { UserPanel } from "./pages/UserPanel";
 
 import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./router/PrivateRoute";
 
 import { ToastContainer } from "react-toastify";
+
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute/>}>
-            <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+            <Route path="/user-panel" element={<UserPanel />} />
           </Route>
           <Route path="/singup" element={<SingUp />} />
         </Routes>

@@ -1680,3 +1680,7 @@ section {
   color: var(--color-primary);
   text-transform: capitalize;
 }
+
+.logout {
+  border: 0;
+}

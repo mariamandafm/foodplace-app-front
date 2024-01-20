@@ -1,8 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/AuthProvider";
+import { Navigate } from "react-router-dom";
 
 export function Header() {
+  const auth = useAuth();
+
   return (
     <>
+      {auth.isAuthenticated ? <Navigate to="/user-panel" /> : null}
       <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-start justify-content-between">
           <div class="d-flex">
@@ -16,24 +21,48 @@ export function Header() {
             </a>
 
             <nav id="navbar" class="navbar">
-              <ul>
-                <li>
-                  <a href="#hero">Home</a>
-                </li>
-                <li>
-                  <a href="#about">About</a>
-                </li>
-                <li>
-                  <a href="#menu">Menu</a>
-                </li>
-                <li>
-                  <a href="#footer">Contact</a>
-                </li>
-              </ul>
+              {auth.isAuthenticated ? (
+                <ul>
+                  <li>
+                    <a href="#my-orders">My Orders</a>
+                  </li>
+                  <li>
+                    <a href="#menu">Menu</a>
+                  </li>
+                  <li>
+                    <a href="#footer">Contact</a>
+                  </li>
+                </ul>
+              ) : (
+                <ul>
+                  <li>
+                    <a href="#hero">Home</a>
+                  </li>
+                  <li>
+                    <a href="#about">About</a>
+                  </li>
+                  <li>
+                    <a href="#menu">Menu</a>
+                  </li>
+                  <li>
+                    <a href="#footer">Contact</a>
+                  </li>
+                </ul>
+              )}
             </nav>
           </div>
-
-          <Link to="/login" className="btn-book-a-table">Login</Link>
+          {auth.isAuthenticated ? (
+            <button 
+              className="btn-book-a-table logout"
+              onClick= {() => auth.logOut()}
+              >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="btn-book-a-table">
+              Login
+            </Link>
+          )}
 
           <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
           <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
