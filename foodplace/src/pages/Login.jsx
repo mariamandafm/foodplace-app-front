@@ -31,9 +31,10 @@ export function Login() {
           autoClose: 2000,
         });
     } else {
-      toast.error("Please fill all the fields",
+      toast.error("Please fill all the fields.",
         {
           position: 'top-center',
+          autoClose: 2000,
         });
     }
   };
