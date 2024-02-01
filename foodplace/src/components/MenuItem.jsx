@@ -19,7 +19,6 @@ export function MenuItem(props) {
         },
       }
     ).then(() => {
-      console.log("aaaaaaaaaaa")
       navigate("/cart");
     });
   };
