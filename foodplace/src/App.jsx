@@ -7,6 +7,7 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SingUp } from "./pages/SingUp";
 import { UserPanel } from "./pages/UserPanel";
+import { Cart } from "./pages/Cart";
 
 import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./router/PrivateRoute";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute/>}>
             <Route path="/user-panel" element={<UserPanel />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
           <Route path="/singup" element={<SingUp />} />
         </Routes>

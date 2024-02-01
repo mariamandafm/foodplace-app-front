@@ -7,7 +7,8 @@ export function Header() {
 
   return (
     <>
-      {auth.isAuthenticated ? <Navigate to="/user-panel" /> : null}
+      {auth.isAuthenticated && location.pathname == "/" ? <Navigate to="/user-panel" /> : null}
+      
       <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-start justify-content-between">
           <div class="d-flex">
@@ -52,12 +53,15 @@ export function Header() {
             </nav>
           </div>
           {auth.isAuthenticated ? (
+            <div>
+              <Link to="/cart" className="btn-book-a-table"><i class="bi bi-basket2-fill"></i></Link>
             <button 
               className="btn-book-a-table logout"
               onClick= {() => auth.logOut()}
               >
               Logout
             </button>
+            </div>
           ) : (
             <Link to="/login" className="btn-book-a-table">
               Login
