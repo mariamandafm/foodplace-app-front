@@ -12,14 +12,14 @@ export function Header() {
       <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-start justify-content-between">
           <div class="d-flex">
-            <a
-              href="index.html"
+            <Link
+              to="/"
               class="logo d-flex align-items-center me-auto me-lg-0"
             >
               <h1>
                 FoodPlace<span>.</span>
               </h1>
-            </a>
+            </Link>
 
             <nav id="navbar" class="navbar">
               {auth.isAuthenticated ? (

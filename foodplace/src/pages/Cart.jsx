@@ -66,6 +66,7 @@ export function Cart() {
                         key={item.id}
                         foodItem={item.food_item}
                         quantity={item.quantity}
+                        orderItemId={item.id}
                       />
                     );
                   })}

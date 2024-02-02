@@ -1,7 +1,25 @@
 import { useState } from "react";
+import { api } from "../services/api.js";
+import { useAuth } from "../hooks/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export function CartItem(props) {
   const [quantity, setQuantity] = useState(props.quantity);
+
+  const auth = useAuth();
+  const navigate = useNavigate();
+
+  const deleteItem = () => {
+    api.delete(`menu/order-items/${props.orderItemId}/`, {
+      headers: {
+        Authorization: `Token ${auth.token}`,
+      },
+    }).then(() => {
+      navigate(0);
+    }).catch((error) => {
+      console.error("Error deleting item:", error);
+    });
+  }
 
   return (
     <>
@@ -37,9 +55,12 @@ export function CartItem(props) {
           <h6 class="mb-0">$ {props.foodItem.price}</h6>
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-          <a href="#!" class="text-muted">
+          <button 
+            class="button-text-only"
+            onClick={() => deleteItem()}
+          >
             <i class="bi bi-x-lg"></i>
-          </a>
+          </button>
         </div>
       </div>
       <hr class="my-4"></hr>
