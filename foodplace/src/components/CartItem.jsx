@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { api } from "../services/api.js";
 import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 
 export function CartItem(props) {
   const [quantity, setQuantity] = useState(props.quantity);
@@ -10,60 +11,81 @@ export function CartItem(props) {
   const navigate = useNavigate();
 
   const deleteItem = () => {
-    api.delete(`menu/order-items/${props.orderItemId}/`, {
-      headers: {
-        Authorization: `Token ${auth.token}`,
-      },
-    }).then(() => {
-      navigate(0);
-    }).catch((error) => {
-      console.error("Error deleting item:", error);
-    });
+    api
+      .delete(`menu/order-items/${props.orderItemId}/`, {
+        headers: {
+          Authorization: `Token ${auth.token}`,
+        },
+      })
+      .then(() => {
+        navigate(0);
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
+  };
+
+  const updateQuantity = useCallback(
+    debounce(newQuantity => {
+      api
+        .patch(
+          `menu/order-items/${props.orderItemId}/`,
+          {
+            quantity: newQuantity,
+          },
+          {
+            headers: {
+              Authorization: `Token ${auth.token}`,
+            },
+          }
+        )
+        .then(() => {
+          navigate(0);
+        })
+        .catch((error) => {
+          console.error("Error updating quantity:", error);
+        });
+    }, 1000), [])
+
+  const handleQuantityChange = (event) => {
+    const newQuantity = event.target.value;
+    setQuantity(newQuantity);
+    updateQuantity(newQuantity);
   }
+
 
   return (
     <>
-      <div class="row mb-4 d-flex justify-content-between align-items-center">
-        <div class="col-md-2 col-lg-2 col-xl-2">
+      <div className="row mb-4 d-flex justify-content-between align-items-center">
+        <div className="col-md-2 col-lg-2 col-xl-2">
           <img
             src={props.foodItem.image}
-            class="img-fluid rounded-3"
+            className="img-fluid rounded-3"
             alt={props.foodItem.name}
           />
         </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-          <h6 class="text-muted">{props.foodItem.type}</h6>
-          <h6 class="text-black mb-0">{props.foodItem.name}</h6>
+        <div className="col-md-3 col-lg-3 col-xl-3">
+          <h6 className="text-muted">{props.foodItem.type}</h6>
+          <h6 className="text-black mb-0">{props.foodItem.name}</h6>
         </div>
-        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-          <button
-            class="btn btn-link"
-            onClick={() => setQuantity(quantity - 1)}	
-          >
-            <i class="bi bi-dash"></i>
-          </button>
-          <span>{quantity}</span>
-
-          <button
-            class="btn btn-link"
-            onClick={() => setQuantity(quantity + 1)}
-          >
-            <i class="bi bi-plus"></i>
-          </button>
+        <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+          <input 
+            min="0" 
+            value={quantity} 
+            type="number" 
+            className="form-control"
+            onChange={handleQuantityChange} />
         </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-          <h6 class="mb-0">$ {props.foodItem.price}</h6>
+        <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+          <h6 className="mb-0">$ {props.foodItem.price}</h6>
         </div>
-        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-          <button 
-            class="button-text-only"
-            onClick={() => deleteItem()}
-          >
-            <i class="bi bi-x-lg"></i>
+        <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+          <button className="button-text-only" onClick={() => deleteItem()}>
+            <i className="bi bi-x-lg"></i>
           </button>
         </div>
       </div>
-      <hr class="my-4"></hr>
+      <hr className="my-4"></hr>
     </>
   );
 }
