@@ -1735,3 +1735,24 @@ section {
     padding-top: 10px;
   }
 }
+
+@media (max-width: 1280px) {
+
+  .btn-show {
+    display: none;
+  }
+  .btn-hide{
+    font-size: 28px;
+    width: 100% !important;
+    border-radius: 0px !important;
+    margin-left: 0px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+
+  .btn-hide {
+    display: none;
+  }
+}
+

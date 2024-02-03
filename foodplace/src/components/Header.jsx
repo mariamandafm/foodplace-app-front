@@ -7,15 +7,14 @@ export function Header() {
 
   return (
     <>
-      {auth.isAuthenticated && location.pathname == "/" ? <Navigate to="/user-panel" /> : null}
-      
+      {auth.isAuthenticated && location.pathname == "/" ? (
+        <Navigate to="/user-panel" />
+      ) : null}
+
       <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-start justify-content-between">
           <div class="d-flex">
-            <Link
-              to="/"
-              class="logo d-flex align-items-center me-auto me-lg-0"
-            >
+            <Link to="/" class="logo d-flex align-items-center me-auto me-lg-0">
               <h1>
                 FoodPlace<span>.</span>
               </h1>
@@ -32,6 +31,19 @@ export function Header() {
                   </li>
                   <li>
                     <a href="#footer">Contact</a>
+                  </li>
+                  <li>
+                    <Link to="/cart" className="">
+                      Cart
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className="btn-book-a-table logout btn-hide mt-3"
+                      onClick={() => auth.logOut()}
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
               ) : (
@@ -54,20 +66,21 @@ export function Header() {
           </div>
           {auth.isAuthenticated ? (
             <div>
-              <Link to="/cart" className="btn-book-a-table"><i class="bi bi-basket2-fill"></i></Link>
-            <button 
-              className="btn-book-a-table logout"
-              onClick= {() => auth.logOut()}
+              <Link to="/cart" className="btn-book-a-table btn-show">
+                <i class="bi bi-basket2-fill"></i>
+              </Link>
+              <button
+                className="btn-book-a-table logout btn-show"
+                onClick={() => auth.logOut()}
               >
-              Logout
-            </button>
+                Logout
+              </button>
             </div>
           ) : (
             <Link to="/login" className="btn-book-a-table">
               Login
             </Link>
           )}
-
           <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
           <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         </div>

@@ -18,7 +18,7 @@ export function CartItem(props) {
         },
       })
       .then(() => {
-        navigate(0);
+        props.fetchOrder();
       })
       .catch((error) => {
         console.error("Error deleting item:", error);

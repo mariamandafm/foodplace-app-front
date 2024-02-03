@@ -62,7 +62,7 @@ export function SingUp() {
             FoodPlace<span>.</span>
           </h1>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-md-6">
           <form onSubmit={handleSubmit} className="php-email-form">
             <div className="form-floating mb-3">
               <input
