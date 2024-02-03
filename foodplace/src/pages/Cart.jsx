@@ -5,6 +5,7 @@ import { api } from "../services/api.js";
 import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { CartSummary } from "../components/CartSummary.jsx";
+import { toast } from "react-toastify";
 
 export function Cart() {
   const auth = useAuth();
@@ -47,7 +48,18 @@ export function Cart() {
         }
       )
       .then(() => {
+        toast.success("Order placed!",
+        {
+          position: 'top-center',
+          autoClose: 2000,
+        });
         navigate("/");
+      }).catch((error) => {
+        toast.error("Erro when placing order. Try again!",
+        {
+          position: 'top-center',
+          autoClose: 2000,
+        });
       });
   };
 

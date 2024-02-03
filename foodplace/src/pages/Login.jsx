@@ -25,11 +25,6 @@ export function Login() {
     e.preventDefault();
     if (input.email && input.password) {
       auth.loginAction(input);
-      toast.success("Login success!",
-        {
-          position: 'top-center',
-          autoClose: 2000,
-        });
     } else {
       toast.error("Please fill all the fields.",
         {
