@@ -1729,3 +1729,9 @@ section {
   transition: 0.3s;
   background-color: var(--color-primary);
 }
+
+@media (max-width: 768px) {
+  .food-item-text {
+    padding-top: 10px;
+  }
+}

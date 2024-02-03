@@ -59,7 +59,7 @@ export function Cart() {
           
             {order.length > 0 ? (
               <div className="row">
-                <div className="col-8">
+                <div className="col-12 col-md-8">
                   <h3 className="cart-title mb-5">Cart</h3>
                   {orderItems.map((item) => {
                     return (
@@ -73,7 +73,7 @@ export function Cart() {
                     );
                   })}
                 </div>
-                <div className="col-4">
+                <div className="col-12 col-md-4">
                   <div className="section-bg p-3">
                     <CartSummary order={order} />
                     <div className="d-flex justify-content-end">

@@ -58,19 +58,18 @@ export function CartItem(props) {
 
   return (
     <>
-      <div className="row mb-4 d-flex justify-content-between align-items-center">
-        <div className="col-md-2 col-lg-2 col-xl-2">
+      <div className="row mb-3 d-flex justify-content-between align-items-center">
+        <div className="col-3 col-md-2 col-lg-2 col-xl-2">
           <img
             src={props.foodItem.image}
             className="img-fluid rounded-3"
             alt={props.foodItem.name}
           />
         </div>
-        <div className="col-md-3 col-lg-3 col-xl-3">
-          <h6 className="text-muted">{props.foodItem.type}</h6>
+        <div className="col-5 col-md-3 col-lg-3 col-xl-3 food-item-text">
           <h6 className="text-black mb-0">{props.foodItem.name}</h6>
         </div>
-        <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+        <div className="col-4 col-md-3 col-lg-3 col-xl-2 d-flex food-item-text">
           <input 
             min="0" 
             value={quantity} 
@@ -78,10 +77,10 @@ export function CartItem(props) {
             className="form-control"
             onChange={handleQuantityChange} />
         </div>
-        <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-          <h6 className="mb-0">$ {props.foodItem.price}</h6>
+        <div className="col-8 col-md-3 col-lg-2 col-xl-2 offset-lg-1 food-item-text">
+          <h6 className="mb-0 food-item-text">$ {props.foodItem.price}</h6>
         </div>
-        <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+        <div className="col-4 col-md-1 col-lg-1 col-xl-1 text-end food-item-text">
           <button className="button-text-only" onClick={() => deleteItem()}>
             <i className="bi bi-x-lg"></i>
           </button>
