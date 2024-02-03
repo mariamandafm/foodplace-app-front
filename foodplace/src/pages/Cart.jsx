@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { api } from "../services/api.js";
 import { useAuth } from "../hooks/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { CartSummary } from "../components/CartSummary.jsx";
 
 export function Cart() {
   const auth = useAuth();
@@ -67,33 +68,14 @@ export function Cart() {
                         foodItem={item.food_item}
                         quantity={item.quantity}
                         orderItemId={item.id}
+                        fetchOrder={fetchOrder}
                       />
                     );
                   })}
                 </div>
                 <div className="col-4">
                   <div className="section-bg p-3">
-                    <h5>Summary</h5>
-                    <form>
-                      <div className="pt-2">
-                        <label>Address:</label>
-                        <select class="form-select">
-                          <option value="">Home</option>
-                        </select>
-                      </div>
-                      <div className="pt-3">
-                        <label>Payment method:</label>
-                        <select class="form-select">
-                          <option value="CASH">Cash</option>
-                          <option value="CARD" disabled>
-                            Credit Card
-                          </option>
-                        </select>
-                      </div>
-                    </form>
-                    <p className="pt-3">Items: {order[0].total_items}</p>
-                    <hr />
-                    <p>Total: $ {order[0].total_price}</p>
+                    <CartSummary order={order} />
                     <div className="d-flex justify-content-end">
                       <button
                         className="btn-default"

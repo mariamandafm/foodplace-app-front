@@ -40,7 +40,9 @@ export function CartItem(props) {
           }
         )
         .then(() => {
-          navigate(0);
+          //navigate(0);
+          props.fetchOrder()
+          console.log("Quantity updated")
         })
         .catch((error) => {
           console.error("Error updating quantity:", error);
