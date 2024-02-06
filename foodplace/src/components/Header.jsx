@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/AuthProvider";
 import { Navigate } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 export function Header() {
   const auth = useAuth();
+
+  const currentPath = window.location.pathname;
 
   return (
     <>
@@ -19,23 +22,55 @@ export function Header() {
                 FoodPlace<span>.</span>
               </h1>
             </Link>
-
             <nav id="navbar" class="navbar">
               {auth.isAuthenticated ? (
                 <ul>
-                  <li>
-                    <a href="#my-orders">My Orders</a>
-                  </li>
-                  <li>
-                    <a href="#menu">Menu</a>
-                  </li>
-                  <li>
-                    <a href="#footer">Contact</a>
-                  </li>
-                  <li>
-                    <Link to="/cart" className="">
-                      Cart
-                    </Link>
+                  {currentPath == "/cart" ? (
+                    <li>
+                      <Link to="/user-panel">Home</Link>
+                    </li>
+                  ) : (
+                    <>
+                      <li>
+                        <ScrollLink
+                          className="scroll-link"
+                          to="my-orders"
+                          smooth={true}
+                          spy={true}
+                          duration={500}
+                          offset={-70}
+                        >
+                          My Orders
+                        </ScrollLink>
+                      </li>
+                      <li>
+                        <ScrollLink
+                          className="scroll-link"
+                          to="menu"
+                          smooth={true}
+                          spy={true}
+                          duration={500}
+                          offset={-70}
+                        >
+                          Menu
+                        </ScrollLink>
+                      </li>
+                      <li>
+                        <ScrollLink
+                          className="scroll-link"
+                          to="footer"
+                          smooth={true}
+                          spy={true}
+                          duration={500}
+                          offset={-70}
+                        >
+                          Contact
+                        </ScrollLink>
+                      </li>
+                    </>
+                  )}
+                  <li className="btn-hide">
+                    <Link to="/cart">Cart</Link>
                   </li>
                   <li>
                     <button
@@ -49,16 +84,52 @@ export function Header() {
               ) : (
                 <ul>
                   <li>
-                    <a href="#hero">Home</a>
+                    <ScrollLink
+                      className="scroll-link"
+                      to="hero"
+                      smooth={true}
+                      spy={true}
+                      duration={500}
+                      offset={-70}
+                    >
+                      Home
+                    </ScrollLink>
                   </li>
                   <li>
-                    <a href="#about">About</a>
+                    <ScrollLink
+                      className="scroll-link"
+                      to="about"
+                      smooth={true}
+                      spy={true}
+                      duration={500}
+                      offset={-70}
+                    >
+                      About
+                    </ScrollLink>
                   </li>
                   <li>
-                    <a href="#menu">Menu</a>
+                    <ScrollLink
+                      className="scroll-link"
+                      to="menu"
+                      smooth={true}
+                      spy={true}
+                      duration={500}
+                      offset={-70}
+                    >
+                      Menu
+                    </ScrollLink>
                   </li>
                   <li>
-                    <a href="#footer">Contact</a>
+                    <ScrollLink
+                      className="scroll-link"
+                      to="footer"
+                      smooth={true}
+                      spy={true}
+                      duration={500}
+                      offset={-70}
+                    >
+                      Contact
+                    </ScrollLink>
                   </li>
                 </ul>
               )}

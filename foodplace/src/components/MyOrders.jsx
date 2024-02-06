@@ -28,7 +28,7 @@ export function MyOrders() {
           <div className="section-header">
             <h2>Last Orders</h2>
             <div className="row">
-              {orders.slice(0, 6).map((order) => {
+              {orders.slice(0, 7).map((order) => {
                 return order.status != "NOT_PLACED" ? (
                   <div className="col-lg-4">
                     <div className="card mt-3 border-0">

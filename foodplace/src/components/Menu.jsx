@@ -19,7 +19,7 @@ export function Menu() {
           <div class="section-header">
             <h2>Our Menu</h2>
             <p>
-              Check Our <span>Yummy Menu</span>
+              Check Our <span>Menu</span>
             </p>
           </div>
 

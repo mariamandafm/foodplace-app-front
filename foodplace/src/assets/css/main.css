@@ -1756,3 +1756,6 @@ section {
   }
 }
 
+.scroll-link {
+  cursor: pointer;
+}
