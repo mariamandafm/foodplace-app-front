@@ -7,12 +7,6 @@ export function CartSummary(props) {
     <>
       <h5>Summary</h5>
       <form>
-        <div className="pt-2">
-          <label>Address:</label>
-          <select class="form-select">
-            <option value="">Home</option>
-          </select>
-        </div>
         <div className="pt-3">
           <label>Payment method:</label>
           <select class="form-select">

@@ -1759,3 +1759,11 @@ section {
 .scroll-link {
   cursor: pointer;
 }
+
+.btn-address:hover{
+  border-color: var(--color-primary);
+}
+
+.btn-address:active{
+  background-color: rgb(240, 240, 240);
+}
