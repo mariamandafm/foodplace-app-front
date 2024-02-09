@@ -47,7 +47,7 @@ export function CartPage({ onButtonClick, setOrderInfo }) {
         <div>
           <div className="row">
             <div className="col-12 col-md-8">
-              <h3 className="cart-title mb-5">Cart</h3>
+              <h5 className="cart-title mb-5">Cart</h5>
               {orderItems.map((item) => {
                 return (
                   <CartItem
@@ -76,7 +76,7 @@ export function CartPage({ onButtonClick, setOrderInfo }) {
           </div>
         </div>
       ) : (
-        <h3 className="cart-title mb-5">Cart is empty</h3>
+        <h3 className="cart-title mb-5 text-center">Cart is empty</h3>
       )}
     </>
   );

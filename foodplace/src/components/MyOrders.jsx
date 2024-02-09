@@ -28,28 +28,31 @@ export function MyOrders() {
           <div className="section-header">
             <h2>Last Orders</h2>
             <div className="row">
-              {orders.slice(0, 7).map((order) => {
-                return order.status != "NOT_PLACED" ? (
-                  <div className="col-lg-4">
-                    <div className="card mt-3 border-0">
-                      <div className="card-body text-start">
-                        <div>
-                          <div className="d-flex justify-content-between">
-                            <h6 className="card-title ">
-                              Order ID: {order.id}
-                            </h6>
-                            <span className="badge status-badge">
-                              {order.status}
-                            </span>
-                          </div>
+              {orders
+                .filter((order) => order.status != "NOT_PLACED")
+                .slice(0, 6)
+                .map((order) => {
+                  return (
+                    <div className="col-lg-4">
+                      <div className="card mt-3 border-0">
+                        <div className="card-body text-start">
+                          <div>
+                            <div className="d-flex justify-content-between">
+                              <h6 className="card-title ">
+                                Order ID: {order.id}
+                              </h6>
+                              <span className="badge status-badge">
+                                {order.status}
+                              </span>
+                            </div>
 
-                          <span>Total: ${order.total_price}</span>
+                            <span>Total: ${order.total_price}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ) : null;
-              })}
+                  );
+                })}
             </div>
           </div>
           <div class="row justify-content-between gy-5"></div>
